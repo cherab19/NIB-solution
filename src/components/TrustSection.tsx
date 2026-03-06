@@ -1,17 +1,23 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const stats = [
-  { value: "10+", label: "Software Projects Delivered" },
-  { value: "5+", label: "Active Clients" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "24/7", label: "Support Available" },
-];
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 const TrustSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { data: stats } = useQuery({
+    queryKey: ["site-stats"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("site_stats")
+        .select("*")
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <section ref={ref} className="py-20 bg-surface-dark">
@@ -31,9 +37,9 @@ const TrustSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, i) => (
+          {(stats ?? []).map((stat, i) => (
             <motion.div
-              key={stat.label}
+              key={stat.id}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -49,7 +55,6 @@ const TrustSection = () => {
           ))}
         </div>
 
-        {/* Logo strip */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}

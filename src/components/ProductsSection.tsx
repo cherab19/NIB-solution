@@ -1,31 +1,31 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import productMembership from "@/assets/product-membership.png";
 import productSchool from "@/assets/product-school.png";
 import productClinic from "@/assets/product-clinic.png";
 
-const products = [
-  {
-    title: "Membership Management System",
-    image: productMembership,
-    features: ["Member registration & profiles", "Subscription & billing", "Automated notifications", "Reports & analytics"],
-  },
-  {
-    title: "School Management System",
-    image: productSchool,
-    features: ["Student enrollment", "Attendance tracking", "Grade management", "Parent communication"],
-  },
-  {
-    title: "Clinic Management System",
-    image: productClinic,
-    features: ["Patient records", "Appointment scheduling", "Prescription tracking", "Billing integration"],
-  },
-];
+// Fallback images mapped by index
+const fallbackImages = [productMembership, productSchool, productClinic];
 
 const ProductsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { data: products } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <section id="products" ref={ref} className="py-24 bg-secondary">
@@ -48,9 +48,9 @@ const ProductsSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {products.map((product, i) => (
+          {(products ?? []).map((product, i) => (
             <motion.div
-              key={product.title}
+              key={product.id}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -58,7 +58,7 @@ const ProductsSection = () => {
             >
               <div className="aspect-video overflow-hidden">
                 <img
-                  src={product.image}
+                  src={product.image_url || fallbackImages[i] || fallbackImages[0]}
                   alt={product.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
@@ -69,7 +69,7 @@ const ProductsSection = () => {
                   {product.title}
                 </h3>
                 <ul className="space-y-2 mb-6">
-                  {product.features.map((f) => (
+                  {(product.features ?? []).map((f) => (
                     <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
                       <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
                       {f}

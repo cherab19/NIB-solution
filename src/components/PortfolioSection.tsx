@@ -1,26 +1,28 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import productClinic from "@/assets/product-clinic.png";
 import portfolioRestaurant from "@/assets/portfolio-restaurant.png";
 
-const projects = [
-  {
-    title: "Clinic Management System",
-    description: "Digitized patient records and appointment system for a leading Addis Ababa clinic.",
-    tech: ["React", "Node.js", "PostgreSQL"],
-    image: productClinic,
-  },
-  {
-    title: "Restaurant Website",
-    description: "Online menu and ordering platform with real-time order tracking.",
-    tech: ["React", "Supabase", "Tailwind"],
-    image: portfolioRestaurant,
-  },
-];
+const fallbackImages = [productClinic, portfolioRestaurant];
 
 const PortfolioSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { data: projects } = useQuery({
+    queryKey: ["portfolio"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("portfolio_projects")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order");
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <section id="portfolio" ref={ref} className="py-24 bg-surface-dark">
@@ -40,9 +42,9 @@ const PortfolioSection = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, i) => (
+          {(projects ?? []).map((project, i) => (
             <motion.div
-              key={project.title}
+              key={project.id}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -50,7 +52,7 @@ const PortfolioSection = () => {
             >
               <div className="aspect-video overflow-hidden">
                 <img
-                  src={project.image}
+                  src={project.image_url || fallbackImages[i] || fallbackImages[0]}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
@@ -62,7 +64,7 @@ const PortfolioSection = () => {
                 </h3>
                 <p className="text-surface-dark-foreground/60 mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
+                  {(project.technologies ?? []).map((t) => (
                     <span
                       key={t}
                       className="px-3 py-1 text-xs rounded-full bg-primary/20 text-primary font-medium"

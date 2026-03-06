@@ -1,31 +1,27 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { format } from "date-fns";
 import blogDigital from "@/assets/blog-digital.png";
-
-const posts = [
-  {
-    title: "Why Ethiopian Businesses Need Websites",
-    description: "Discover how a professional website can transform your business reach and credibility in Ethiopia's growing digital economy.",
-    image: blogDigital,
-    date: "Mar 1, 2026",
-  },
-  {
-    title: "Benefits of Digital Management Systems",
-    description: "Learn how schools, clinics, and organizations save time and money with custom management software.",
-    image: blogDigital,
-    date: "Feb 20, 2026",
-  },
-  {
-    title: "How Software Improves Business Efficiency",
-    description: "Real case studies of Ethiopian companies that doubled their productivity through digital solutions.",
-    image: blogDigital,
-    date: "Feb 10, 2026",
-  },
-];
 
 const BlogSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { data: posts } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false })
+        .limit(3);
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <section id="blog" ref={ref} className="py-24 bg-background">
@@ -45,9 +41,9 @@ const BlogSection = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post, i) => (
+          {(posts ?? []).map((post, i) => (
             <motion.article
-              key={post.title}
+              key={post.id}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
@@ -55,14 +51,16 @@ const BlogSection = () => {
             >
               <div className="aspect-video overflow-hidden">
                 <img
-                  src={post.image}
+                  src={post.image_url || blogDigital}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs text-muted-foreground">{post.date}</span>
+                <span className="text-xs text-muted-foreground">
+                  {post.published_at ? format(new Date(post.published_at), "MMM d, yyyy") : ""}
+                </span>
                 <h3 className="mt-2 text-lg font-heading font-semibold text-card-foreground group-hover:text-primary transition-colors">
                   {post.title}
                 </h3>

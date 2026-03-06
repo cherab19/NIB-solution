@@ -11,26 +11,36 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Placeholder — will connect to DB later
-    await new Promise((r) => setTimeout(r, 1000));
+    const { error } = await supabase.from("contact_messages").insert({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim() || null,
+      message: formData.message.trim(),
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Failed to send message. Please try again.");
+      return;
+    }
     toast.success("Message sent! We'll get back to you within 24 hours.");
     setFormData({ name: "", email: "", phone: "", message: "" });
-    setLoading(false);
+    setOpen(false);
   };
 
   return (
     <section id="contact" ref={ref} className="py-24 bg-primary relative overflow-hidden">
-      {/* Decorative circles */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-emerald-light/20 blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-gold/10 blur-3xl translate-y-1/2 -translate-x-1/2" />
 
@@ -49,7 +59,7 @@ const CTASection = () => {
             modern software solutions.
           </p>
 
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button variant="gold" size="lg" className="mt-8">
                 Book Free Consultation
@@ -63,6 +73,7 @@ const CTASection = () => {
                 <Input
                   placeholder="Your Name"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -70,17 +81,20 @@ const CTASection = () => {
                   type="email"
                   placeholder="Email Address"
                   required
+                  maxLength={255}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
                 <Input
                   placeholder="Phone Number"
+                  maxLength={20}
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
                 <Textarea
                   placeholder="Tell us about your project..."
                   required
+                  maxLength={1000}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
