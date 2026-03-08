@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 import blogDigital from "@/assets/blog-digital.png";
 
 const BlogSection = () => {
@@ -47,30 +48,34 @@ const BlogSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 cursor-pointer"
             >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={post.image_url || blogDigital}
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs text-muted-foreground">
-                  {post.published_at ? format(new Date(post.published_at), "MMM d, yyyy") : ""}
-                </span>
-                <h3 className="mt-2 text-lg font-heading font-semibold text-card-foreground group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                  {post.description}
-                </p>
-                <span className="inline-block mt-4 text-sm font-medium text-primary">
-                  Read More →
-                </span>
-              </div>
+              <Link
+                to={`/blog/${post.slug}`}
+                className="group block bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={post.image_url || blogDigital}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs text-muted-foreground">
+                    {post.published_at ? format(new Date(post.published_at), "MMM d, yyyy") : ""}
+                  </span>
+                  <h3 className="mt-2 text-lg font-heading font-semibold text-card-foreground group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                    {post.description}
+                  </p>
+                  <span className="inline-block mt-4 text-sm font-medium text-primary">
+                    Read More →
+                  </span>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </div>
