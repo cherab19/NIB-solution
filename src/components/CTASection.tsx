@@ -23,17 +23,22 @@ const CTASection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.from("contact_messages").insert({
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      phone: formData.phone.trim() || null,
-      message: formData.message.trim(),
-    });
-    setLoading(false);
-    if (error) {
+    try {
+      const { data, error } = await supabase.functions.invoke("notify-contact", {
+        body: {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || null,
+          message: formData.message.trim(),
+        },
+      });
+      if (error) throw error;
+    } catch {
+      setLoading(false);
       toast.error("Failed to send message. Please try again.");
       return;
     }
+    setLoading(false);
     toast.success("Message sent! We'll get back to you within 24 hours.");
     setFormData({ name: "", email: "", phone: "", message: "" });
     setOpen(false);
