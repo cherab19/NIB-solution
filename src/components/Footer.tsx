@@ -53,7 +53,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://t.me/ezezun" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                <a href="https://t.me/melatech" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
                   Telegram
                 </a>
               </li>
