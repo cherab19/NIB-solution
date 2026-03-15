@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h3 className="font-heading text-xl font-bold text-surface-dark-foreground mb-4">
-              Ezezun
+              Mela Tech
             </h3>
             <p className="text-surface-dark-foreground/60 text-sm">
               Building powerful digital solutions for Ethiopian businesses.
