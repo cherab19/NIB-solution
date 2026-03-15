@@ -48,8 +48,8 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-surface-dark-foreground/60">
               <li>
-                <a href="mailto:hello@ezezun.com" className="hover:text-gold transition-colors">
-                  hello@ezezun.com
+                <a href="mailto:hello@melatech.com" className="hover:text-gold transition-colors">
+                  hello@melatech.com
                 </a>
               </li>
               <li>
