@@ -30,7 +30,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-lg">
-              Ezezun delivers cutting-edge web applications, management systems,
+              Mela Tech delivers cutting-edge web applications, management systems,
               and digital solutions for Ethiopian businesses ready to scale.
             </p>
 
