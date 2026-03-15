@@ -70,7 +70,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-surface-dark-foreground/10 text-center text-sm text-surface-dark-foreground/40">
-          © {new Date().getFullYear()} Ezezun. All rights reserved.
+          © {new Date().getFullYear()} Mela Tech. All rights reserved.
         </div>
       </div>
     </footer>

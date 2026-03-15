@@ -54,7 +54,7 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
               <img
                 src={heroDashboard}
-                alt="Ezezun Software Dashboard"
+                alt="Mela Tech Software Dashboard"
                 className="w-full h-auto animate-float"
                 loading="eager"
               />
