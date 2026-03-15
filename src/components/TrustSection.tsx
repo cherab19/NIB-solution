@@ -32,7 +32,7 @@ const TrustSection = () => {
             Trusted Digital Solutions Provider
           </h2>
           <p className="mt-3 text-surface-dark-foreground/60 max-w-md mx-auto">
-            Ethiopian businesses rely on Ezezun for their digital transformation
+            Ethiopian businesses rely on Mela Tech for their digital transformation
           </p>
         </motion.div>
 

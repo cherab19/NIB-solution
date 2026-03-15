@@ -40,7 +40,7 @@ const ProductsSection = () => {
             Our Products
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-heading font-bold text-foreground">
-            Software Built by Ezezun
+            Software Built by Mela Tech
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
             Ready-to-deploy solutions designed for Ethiopian organizations

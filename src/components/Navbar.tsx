@@ -23,7 +23,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#" className="font-heading text-2xl font-bold text-primary tracking-tight">
-          Ezezun
+          Mela Tech
         </a>
 
         {/* Desktop Nav */}

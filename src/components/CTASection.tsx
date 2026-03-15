@@ -60,7 +60,7 @@ const CTASection = () => {
             Ready to Digitize Your Business?
           </h2>
           <p className="mt-4 text-primary-foreground/80 text-lg">
-            Book a free consultation with Ezezun and transform your business with
+            Book a free consultation with Mela Tech and transform your business with
             modern software solutions.
           </p>
 

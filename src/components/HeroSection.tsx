@@ -30,7 +30,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-lg">
-              Ezezun delivers cutting-edge web applications, management systems,
+              Mela Tech delivers cutting-edge web applications, management systems,
               and digital solutions for Ethiopian businesses ready to scale.
             </p>
 
@@ -54,7 +54,7 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
               <img
                 src={heroDashboard}
-                alt="Ezezun Software Dashboard"
+                alt="Mela Tech Software Dashboard"
                 className="w-full h-auto animate-float"
                 loading="eager"
               />

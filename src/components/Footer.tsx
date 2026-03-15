@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h3 className="font-heading text-xl font-bold text-surface-dark-foreground mb-4">
-              Ezezun
+              Mela Tech
             </h3>
             <p className="text-surface-dark-foreground/60 text-sm">
               Building powerful digital solutions for Ethiopian businesses.
@@ -48,12 +48,12 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-surface-dark-foreground/60">
               <li>
-                <a href="mailto:hello@ezezun.com" className="hover:text-gold transition-colors">
-                  hello@ezezun.com
+                <a href="mailto:hello@melatech.com" className="hover:text-gold transition-colors">
+                  hello@melatech.com
                 </a>
               </li>
               <li>
-                <a href="https://t.me/ezezun" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                <a href="https://t.me/melatech" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
                   Telegram
                 </a>
               </li>
@@ -70,7 +70,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-surface-dark-foreground/10 text-center text-sm text-surface-dark-foreground/40">
-          © {new Date().getFullYear()} Ezezun. All rights reserved.
+          © {new Date().getFullYear()} Mela Tech. All rights reserved.
         </div>
       </div>
     </footer>

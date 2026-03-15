@@ -44,7 +44,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <a href="/" className="font-heading text-3xl font-bold text-primary">
-            Ezezun
+            Mela Tech
           </a>
           <p className="mt-2 text-muted-foreground">Admin Dashboard</p>
         </div>
@@ -87,7 +87,7 @@ const AdminLogin = () => {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@ezezun.com"
+              placeholder="admin@melatech.com"
               className="mt-1"
             />
           </div>
