@@ -55,21 +55,6 @@ const TrustSection = () => {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-40"
-        >
-          {["TechCorp", "EduFirst", "MediCare", "GreenHotel", "SafeNGO"].map((name) => (
-            <div
-              key={name}
-              className="font-heading text-lg font-semibold text-surface-dark-foreground tracking-wider"
-            >
-              {name}
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
