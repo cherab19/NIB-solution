@@ -1,4 +1,4 @@
-import { Facebook, Linkedin } from "lucide-react";
+import { Facebook, Linkedin, Send } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -46,23 +46,14 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm text-surface-dark-foreground/60">
-              <li>
-                <a href="mailto:hello@melatech.com" className="hover:text-gold transition-colors">
-                  hello@melatech.com
-                </a>
-              </li>
-              <li>
-                <a href="https://t.me/melatech" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  Telegram
-                </a>
-              </li>
-            </ul>
-            <div className="flex gap-4 mt-4">
-              <a href="#" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
+            <div className="flex gap-4 mt-2">
+              <a href="https://t.me/axb_5" target="_blank" rel="noopener noreferrer" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
+                <Send size={20} />
+              </a>
+              <a href="https://linkedin.com/in/cherenet-d-281437362" target="_blank" rel="noopener noreferrer" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
+              <a href="https://facebook.com/cherenet.d" target="_blank" rel="noopener noreferrer" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
                 <Facebook size={20} />
               </a>
             </div>
