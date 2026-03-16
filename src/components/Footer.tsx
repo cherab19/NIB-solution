@@ -1,4 +1,4 @@
-import { Facebook, Linkedin } from "lucide-react";
+import { Facebook, Linkedin, Send } from "lucide-react";
 
 const Footer = () => {
   return (
