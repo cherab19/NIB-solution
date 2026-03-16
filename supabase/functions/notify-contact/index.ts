@@ -6,6 +6,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const GATEWAY_URL = 'https://connector-gateway.lovable.dev/telegram';
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -13,11 +15,6 @@ serve(async (req) => {
 
   try {
     const { name, email, phone, message } = await req.json();
-
-    // Log the notification (in production, integrate with an email service)
-    console.log(`📧 New contact from ${name} (${email})`);
-    console.log(`Phone: ${phone || 'N/A'}`);
-    console.log(`Message: ${message}`);
 
     // Store in database
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -32,6 +29,36 @@ serve(async (req) => {
     });
 
     if (error) throw error;
+
+    // Send Telegram notification
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    const TELEGRAM_API_KEY = Deno.env.get('TELEGRAM_API_KEY');
+    const TELEGRAM_CHAT_ID = Deno.env.get('TELEGRAM_CHAT_ID');
+
+    if (LOVABLE_API_KEY && TELEGRAM_API_KEY && TELEGRAM_CHAT_ID) {
+      const text = `📩 <b>New Contact Message</b>\n\n<b>Name:</b> ${name.trim()}\n<b>Email:</b> ${email.trim()}\n<b>Phone:</b> ${phone?.trim() || 'N/A'}\n<b>Message:</b>\n${message.trim()}`;
+
+      const tgResponse = await fetch(`${GATEWAY_URL}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${LOVABLE_API_KEY}`,
+          'X-Connection-Api-Key': TELEGRAM_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text,
+          parse_mode: 'HTML',
+        }),
+      });
+
+      const tgData = await tgResponse.json();
+      if (!tgResponse.ok) {
+        console.error(`Telegram API error [${tgResponse.status}]:`, JSON.stringify(tgData));
+      }
+    } else {
+      console.warn('Telegram notification skipped: missing env vars');
+    }
 
     return new Response(
       JSON.stringify({ success: true, message: 'Contact message saved and notification sent' }),
