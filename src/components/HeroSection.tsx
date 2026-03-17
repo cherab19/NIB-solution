@@ -1,50 +1,44 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroDashboard from "@/assets/hero-dashboard.png";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-background" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             className="space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-              Leading Software Solutions in Ethiopia
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight text-foreground">
-              We Build{" "}
-              <span className="text-gradient-primary">Powerful Software</span>{" "}
-              That Helps Companies{" "}
-              <span className="text-gradient-gold">Grow Digitally</span>
+              {t("hero.title1")}
+              <span className="text-gradient-primary">{t("hero.title.highlight1")}</span>
+              {t("hero.title2")}
+              <span className="text-gradient-gold">{t("hero.title.highlight2")}</span>
             </h1>
 
             <p className="text-lg text-muted-foreground max-w-lg">
-              Mela Tech delivers cutting-edge web applications, management systems,
-              and digital solutions for Ethiopian businesses ready to scale.
+              {t("hero.desc")}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Button variant="hero" size="lg">
-                <a href="#contact">Get Free Consultation</a>
+                <a href="#contact">{t("hero.cta1")}</a>
               </Button>
               <Button variant="hero-outline" size="lg">
-                <a href="#portfolio">View Our Work</a>
+                <a href="#services">{t("hero.cta2")}</a>
               </Button>
             </div>
           </motion.div>
 
-          {/* Right Dashboard Image */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -54,7 +48,7 @@ const HeroSection = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
               <img
                 src={heroDashboard}
-                alt="Mela Tech Software Dashboard"
+                alt={t("hero.img.alt")}
                 className="w-full h-auto animate-float"
                 loading="eager"
               />

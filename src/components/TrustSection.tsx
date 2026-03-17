@@ -2,10 +2,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const TrustSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const { data: stats } = useQuery({
     queryKey: ["site-stats"],
@@ -29,10 +31,10 @@ const TrustSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-heading font-bold text-surface-dark-foreground">
-            Trusted Digital Solutions Provider
+            {t("trust.title")}
           </h2>
           <p className="mt-3 text-surface-dark-foreground/60 max-w-md mx-auto">
-            Ethiopian businesses rely on Mela Tech for their digital transformation
+            {t("trust.desc")}
           </p>
         </motion.div>
 
@@ -54,7 +56,6 @@ const TrustSection = () => {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CTASection = () => {
   const ref = useRef(null);
@@ -19,12 +20,13 @@ const CTASection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke("notify-contact", {
+      const { error } = await supabase.functions.invoke("notify-contact", {
         body: {
           name: formData.name.trim(),
           email: formData.email.trim(),
@@ -57,26 +59,25 @@ const CTASection = () => {
           className="max-w-2xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-foreground">
-            Ready to Digitize Your Business?
+            {t("cta.title")}
           </h2>
           <p className="mt-4 text-primary-foreground/80 text-lg">
-            Book a free consultation with Mela Tech and transform your business with
-            modern software solutions.
+            {t("cta.desc")}
           </p>
 
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button variant="gold" size="lg" className="mt-8">
-                Book Free Consultation
+                {t("cta.button")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle className="font-heading">Get in Touch</DialogTitle>
+                <DialogTitle className="font-heading">{t("cta.form.title")}</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                 <Input
-                  placeholder="Your Name"
+                  placeholder={t("cta.form.name")}
                   required
                   maxLength={100}
                   value={formData.name}
@@ -84,27 +85,27 @@ const CTASection = () => {
                 />
                 <Input
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t("cta.form.email")}
                   required
                   maxLength={255}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
                 <Input
-                  placeholder="Phone Number"
+                  placeholder={t("cta.form.phone")}
                   maxLength={20}
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
                 <Textarea
-                  placeholder="Tell us about your project..."
+                  placeholder={t("cta.form.message")}
                   required
                   maxLength={1000}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
                 <Button type="submit" variant="hero" className="w-full" disabled={loading}>
-                  {loading ? "Sending..." : "Send Message"}
+                  {loading ? t("cta.form.sending") : t("cta.form.send")}
                 </Button>
               </form>
             </DialogContent>

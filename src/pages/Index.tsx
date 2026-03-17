@@ -4,10 +4,10 @@ import TrustSection from "@/components/TrustSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProductsSection from "@/components/ProductsSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
-import PortfolioSection from "@/components/PortfolioSection";
 import BlogSection from "@/components/BlogSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
 
 const Index = () => {
   return (
@@ -18,10 +18,10 @@ const Index = () => {
       <ServicesSection />
       <ProductsSection />
       <HowItWorksSection />
-      <PortfolioSection />
       <BlogSection />
       <CTASection />
       <Footer />
+      <ChatBot />
     </div>
   );
 };
