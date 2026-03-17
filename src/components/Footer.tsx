@@ -1,37 +1,42 @@
 import { Facebook, Linkedin, Send } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-surface-dark py-16 border-t border-surface-dark-foreground/10">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-10">
-          {/* Company */}
           <div>
             <h3 className="font-heading text-xl font-bold text-surface-dark-foreground mb-4">
-              Mela Tech
+              AxisLabs
             </h3>
             <p className="text-surface-dark-foreground/60 text-sm">
-              Building powerful digital solutions for Ethiopian businesses.
+              {t("footer.desc")}
             </p>
           </div>
 
-          {/* Links */}
           <div>
-            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Company</h4>
+            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">{t("footer.company")}</h4>
             <ul className="space-y-2">
-              {["About", "Services", "Products", "Blog"].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase()}`} className="text-sm text-surface-dark-foreground/60 hover:text-gold transition-colors">
-                    {link}
+              {[
+                { label: t("footer.about"), href: "#" },
+                { label: t("nav.services"), href: "#services" },
+                { label: t("nav.products"), href: "#products" },
+                { label: t("nav.blog"), href: "#blog" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="text-sm text-surface-dark-foreground/60 hover:text-gold transition-colors">
+                    {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Services</h4>
+            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">{t("nav.services")}</h4>
             <ul className="space-y-2">
               {["Website Development", "Custom Software", "Mobile-First Design"].map((link) => (
                 <li key={link}>
@@ -43,9 +48,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">Contact</h4>
+            <h4 className="font-heading font-semibold text-surface-dark-foreground mb-4">{t("footer.contact")}</h4>
             <div className="flex gap-4 mt-2">
               <a href="https://t.me/axb_5" target="_blank" rel="noopener noreferrer" className="text-surface-dark-foreground/40 hover:text-gold transition-colors">
                 <Send size={20} />
@@ -61,7 +65,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-surface-dark-foreground/10 text-center text-sm text-surface-dark-foreground/40">
-          © {new Date().getFullYear()} Mela Tech. All rights reserved.
+          © {new Date().getFullYear()} AxisLabs. {t("footer.rights")}
         </div>
       </div>
     </footer>

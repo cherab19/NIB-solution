@@ -36,7 +36,7 @@ const Admin = () => {
       {/* Sidebar */}
       <aside className="w-64 border-r border-border bg-card flex flex-col">
         <div className="p-6 border-b border-border">
-          <a href="/" className="font-heading text-xl font-bold text-primary">Mela Tech</a>
+          <a href="/" className="font-heading text-xl font-bold text-primary">AxisLabs</a>
           <p className="text-xs text-muted-foreground mt-1">Admin Panel</p>
         </div>
 

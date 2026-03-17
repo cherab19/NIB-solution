@@ -3,16 +3,17 @@ import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import productMembership from "@/assets/product-membership.png";
 import productSchool from "@/assets/product-school.png";
 import productClinic from "@/assets/product-clinic.png";
 
-// Fallback images mapped by index
 const fallbackImages = [productMembership, productSchool, productClinic];
 
 const ProductsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const { data: products } = useQuery({
     queryKey: ["products"],
@@ -37,13 +38,13 @@ const ProductsSection = () => {
           className="text-center mb-16"
         >
           <span className="text-sm font-medium text-gold uppercase tracking-widest">
-            Our Products
+            {t("products.label")}
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-heading font-bold text-foreground">
-            Software Built by Mela Tech
+            {t("products.title")}
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
-            Ready-to-deploy solutions designed for Ethiopian organizations
+            {t("products.desc")}
           </p>
         </motion.div>
 
@@ -77,8 +78,8 @@ const ProductsSection = () => {
                   ))}
                 </ul>
                 <div className="flex gap-3">
-                  <Button variant="hero" size="sm">Request Demo</Button>
-                  <Button variant="ghost" size="sm" className="text-primary">Learn More</Button>
+                  <Button variant="hero" size="sm">{t("products.demo")}</Button>
+                  <Button variant="ghost" size="sm" className="text-primary">{t("products.learn")}</Button>
                 </div>
               </div>
             </motion.div>

@@ -2,17 +2,19 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Products", href: "#products" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
-];
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.products"), href: "#products" },
+    { label: t("nav.blog"), href: "#blog" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   return (
     <motion.nav
@@ -23,10 +25,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#" className="font-heading text-2xl font-bold text-primary tracking-tight">
-          Mela Tech
+          AxisLabs
         </a>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <a
@@ -37,12 +38,12 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
+          <LanguageToggle />
           <Button variant="hero" size="sm" asChild>
-            <a href="#contact">Get Free Consultation</a>
+            <a href="#contact">{t("nav.cta")}</a>
           </Button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="md:hidden text-foreground"
           onClick={() => setIsOpen(!isOpen)}
@@ -51,7 +52,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
@@ -69,8 +69,9 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
+            <LanguageToggle />
             <Button variant="hero" size="sm" asChild>
-              <a href="#contact">Get Free Consultation</a>
+              <a href="#contact">{t("nav.cta")}</a>
             </Button>
           </div>
         </motion.div>

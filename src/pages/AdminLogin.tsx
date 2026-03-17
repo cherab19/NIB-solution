@@ -44,7 +44,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <a href="/" className="font-heading text-3xl font-bold text-primary">
-            Mela Tech
+            AxisLabs
           </a>
           <p className="mt-2 text-muted-foreground">Admin Dashboard</p>
         </div>

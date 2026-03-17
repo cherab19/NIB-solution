@@ -4,16 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Globe, Code, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const iconMap: Record<string, React.ElementType> = {
-  Globe,
-  Code,
-  Smartphone,
-};
+const iconMap: Record<string, React.ElementType> = { Globe, Code, Smartphone };
 
 const ServicesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   const { data: services } = useQuery({
     queryKey: ["services"],
@@ -38,13 +36,13 @@ const ServicesSection = () => {
           className="text-center mb-16"
         >
           <span className="text-sm font-medium text-gold uppercase tracking-widest">
-            What We Do
+            {t("services.label")}
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-heading font-bold text-foreground">
-            Our Services
+            {t("services.title")}
           </h2>
           <p className="mt-4 text-muted-foreground max-w-lg mx-auto">
-            End-to-end digital solutions tailored for Ethiopian businesses
+            {t("services.desc")}
           </p>
         </motion.div>
 
@@ -67,7 +65,7 @@ const ServicesSection = () => {
                 </h3>
                 <p className="text-muted-foreground mb-6">{service.description}</p>
                 <Button variant="link" className="p-0 text-primary">
-                  Learn More →
+                  {t("services.learn")}
                 </Button>
               </motion.div>
             );
