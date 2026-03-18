@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import blogDigital from "@/assets/blog-digital.png";
 
 const BlogSection = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
