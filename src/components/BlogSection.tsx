@@ -4,9 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import blogDigital from "@/assets/blog-digital.png";
 
 const BlogSection = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -34,10 +36,10 @@ const BlogSection = () => {
           className="text-center mb-16"
         >
           <span className="text-sm font-medium text-gold uppercase tracking-widest">
-            Blog
+            {t("blog.label")}
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl font-heading font-bold text-foreground">
-            Latest Insights
+            {t("blog.title")}
           </h2>
         </motion.div>
 
@@ -71,8 +73,8 @@ const BlogSection = () => {
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                     {post.description}
                   </p>
-                  <span className="inline-block mt-4 text-sm font-medium text-primary">
-                    Read More →
+                    <span className="inline-block mt-4 text-sm font-medium text-primary">
+                    {t("blog.read")}
                   </span>
                 </div>
               </Link>

@@ -33,9 +33,6 @@ const HeroSection = () => {
               <Button variant="hero" size="lg">
                 <a href="#contact">{t("hero.cta1")}</a>
               </Button>
-              <Button variant="hero-outline" size="lg">
-                <a href="#services">{t("hero.cta2")}</a>
-              </Button>
             </div>
           </motion.div>
 
