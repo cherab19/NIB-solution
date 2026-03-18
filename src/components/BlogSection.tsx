@@ -73,8 +73,8 @@ const BlogSection = () => {
                   <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
                     {post.description}
                   </p>
-                  <span className="inline-block mt-4 text-sm font-medium text-primary">
-                    Read More →
+                    <span className="inline-block mt-4 text-sm font-medium text-primary">
+                    {t("blog.read")}
                   </span>
                 </div>
               </Link>

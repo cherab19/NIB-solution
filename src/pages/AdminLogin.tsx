@@ -60,7 +60,7 @@ const AdminLogin = () => {
             />
           </div>
           <Button type="submit" variant="hero" className="w-full" disabled={loading}>
-            {loading ? (isSignUp ? "Creating account..." : "Signing in...") : (isSignUp ? "Sign Up" : "Sign In")}
+            {loading ? "Signing in..." : "Sign In"}
           </Button>
         </form>
       </div>
