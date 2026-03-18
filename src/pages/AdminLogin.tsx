@@ -24,32 +24,45 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-      setLoading(false);
-      toast.error(error.message);
-      return;
-    }
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
 
-    // Check admin role directly after sign-in
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) {
-      const { data } = await supabase
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session?.user) {
+        toast.error("Unable to verify your session. Please try again.");
+        return;
+      }
+
+      const { data, error: roleError } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", session.user.id)
         .eq("role", "admin")
         .maybeSingle();
 
-      if (data) {
-        toast.success("Welcome back!");
-        navigate("/admin", { replace: true });
-      } else {
+      if (roleError) {
+        toast.error("Unable to verify admin access. Please try again.");
+        return;
+      }
+
+      if (!data) {
         toast.error("You do not have admin access.");
         await supabase.auth.signOut();
+        return;
       }
+
+      toast.success("Welcome back!");
+      navigate("/admin", { replace: true });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
