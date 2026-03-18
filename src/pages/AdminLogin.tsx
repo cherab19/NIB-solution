@@ -36,37 +36,7 @@ const AdminLogin = () => {
           <p className="mt-2 text-muted-foreground">Admin Dashboard</p>
         </div>
 
-        <div className="flex mb-4 rounded-lg border border-border overflow-hidden">
-          <button
-            type="button"
-            onClick={() => setIsSignUp(false)}
-            className={`flex-1 py-2 text-sm font-medium transition-colors ${!isSignUp ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:text-foreground"}`}
-          >
-            Sign In
-          </button>
-          <button
-            type="button"
-            onClick={() => setIsSignUp(true)}
-            className={`flex-1 py-2 text-sm font-medium transition-colors ${isSignUp ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:text-foreground"}`}
-          >
-            Sign Up
-          </button>
-        </div>
-
         <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-2xl border border-border shadow-card">
-          {isSignUp && (
-            <div>
-              <label className="text-sm font-medium text-foreground">Full Name</label>
-              <Input
-                type="text"
-                required
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Your name"
-                className="mt-1"
-              />
-            </div>
-          )}
           <div>
             <label className="text-sm font-medium text-foreground">Email</label>
             <Input
