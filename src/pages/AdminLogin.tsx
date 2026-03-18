@@ -16,25 +16,14 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (isSignUp) {
-      const { error } = await signUp(email, password, fullName);
-      setLoading(false);
-      if (error) {
-        toast.error(error.message);
-        return;
-      }
-      toast.success("Account created! Please check your email to verify, then contact the admin to get access.");
-      setIsSignUp(false);
-    } else {
-      const { error } = await signIn(email, password);
-      setLoading(false);
-      if (error) {
-        toast.error(error.message);
-        return;
-      }
-      toast.success("Welcome back!");
-      navigate("/admin");
+    const { error } = await signIn(email, password);
+    setLoading(false);
+    if (error) {
+      toast.error(error.message);
+      return;
     }
+    toast.success("Welcome back!");
+    navigate("/admin");
   };
 
   return (
