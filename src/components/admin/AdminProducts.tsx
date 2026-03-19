@@ -188,10 +188,10 @@ const AdminProducts = () => {
               ) : (
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full aspect-video rounded-lg border-2 border-dashed border-border hover:border-primary/50 flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors bg-muted/30"
+                  className="w-full h-20 rounded-lg border-2 border-dashed border-border hover:border-primary/50 flex items-center justify-center gap-2 cursor-pointer transition-colors bg-muted/30"
                 >
-                  <Upload className="h-8 w-8 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
+                  <Upload className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">
                     {uploading ? "Uploading..." : "Click to upload image"}
                   </span>
                 </div>
