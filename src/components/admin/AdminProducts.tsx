@@ -165,17 +165,17 @@ const AdminProducts = () => {
         ))}
       </div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader><DialogTitle className="font-heading">{editingId ? "Edit Product" : "New Product"}</DialogTitle></DialogHeader>
-          <form onSubmit={(e) => { e.preventDefault(); saveMutation.mutate(); }} className="space-y-4 mt-2">
+        <DialogContent className="sm:max-w-md max-h-[85vh] overflow-y-auto">
+          <DialogHeader><DialogTitle className="font-heading text-base">{editingId ? "Edit Product" : "New Product"}</DialogTitle></DialogHeader>
+          <form onSubmit={(e) => { e.preventDefault(); saveMutation.mutate(); }} className="space-y-3 mt-1">
             <Input placeholder="Title" required value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
             <Textarea placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
 
             {/* Image Upload */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-foreground">Product Image</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-foreground">Product Image</label>
               {imagePreview ? (
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
+                <div className="relative w-full aspect-[3/1] rounded-lg overflow-hidden border border-border">
                   <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                   <button
                     type="button"
@@ -188,10 +188,10 @@ const AdminProducts = () => {
               ) : (
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full aspect-video rounded-lg border-2 border-dashed border-border hover:border-primary/50 flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors bg-muted/30"
+                  className="w-full h-20 rounded-lg border-2 border-dashed border-border hover:border-primary/50 flex items-center justify-center gap-2 cursor-pointer transition-colors bg-muted/30"
                 >
-                  <Upload className="h-8 w-8 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
+                  <Upload className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-xs text-muted-foreground">
                     {uploading ? "Uploading..." : "Click to upload image"}
                   </span>
                 </div>
