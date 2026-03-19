@@ -72,7 +72,6 @@ const Admin = () => {
 
           {activeTab === "messages" && <AdminMessages />}
           {activeTab === "blog" && <AdminBlogPosts />}
-          {activeTab === "portfolio" && <AdminPortfolio />}
           {activeTab === "services" && <AdminServices />}
           {activeTab === "products" && <AdminProducts />}
           {activeTab === "stats" && <AdminStats />}
