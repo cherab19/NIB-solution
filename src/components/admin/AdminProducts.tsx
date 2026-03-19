@@ -172,7 +172,7 @@ const AdminProducts = () => {
             <Textarea placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
 
             {/* Image Upload */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <label className="text-sm font-medium text-foreground">Product Image</label>
               {imagePreview ? (
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
