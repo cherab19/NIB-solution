@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { LayoutDashboard, FileText, Briefcase, Settings, MessageSquare, Package, LogOut, BarChart3 } from "lucide-react";
+import { FileText, Settings, MessageSquare, Package, LogOut, BarChart3 } from "lucide-react";
 import AdminBlogPosts from "@/components/admin/AdminBlogPosts";
-import AdminPortfolio from "@/components/admin/AdminPortfolio";
 import AdminServices from "@/components/admin/AdminServices";
 import AdminProducts from "@/components/admin/AdminProducts";
 import AdminMessages from "@/components/admin/AdminMessages";
@@ -13,7 +12,6 @@ import AdminStats from "@/components/admin/AdminStats";
 const tabs = [
   { id: "messages", label: "Messages", icon: MessageSquare },
   { id: "blog", label: "Blog Posts", icon: FileText },
-  { id: "portfolio", label: "Portfolio", icon: Briefcase },
   { id: "services", label: "Services", icon: Settings },
   { id: "products", label: "Products", icon: Package },
   { id: "stats", label: "Stats", icon: BarChart3 },
@@ -74,7 +72,6 @@ const Admin = () => {
 
           {activeTab === "messages" && <AdminMessages />}
           {activeTab === "blog" && <AdminBlogPosts />}
-          {activeTab === "portfolio" && <AdminPortfolio />}
           {activeTab === "services" && <AdminServices />}
           {activeTab === "products" && <AdminProducts />}
           {activeTab === "stats" && <AdminStats />}

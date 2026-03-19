@@ -49,41 +49,53 @@ const ProductsSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {(products ?? []).map((product, i) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={product.image_url || fallbackImages[i] || fallbackImages[0]}
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-heading font-semibold text-card-foreground mb-4">
-                  {product.title}
-                </h3>
-                <ul className="space-y-2 mb-6">
-                  {(product.features ?? []).map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex gap-3">
-                  <Button variant="hero" size="sm">{t("products.demo")}</Button>
-                  <Button variant="ghost" size="sm" className="text-primary">{t("products.learn")}</Button>
+          {(products ?? []).map((product, i) => {
+            const liveUrl = (product as any).url;
+            return (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={product.image_url || fallbackImages[i] || fallbackImages[0]}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-6">
+                  <h3 className="text-lg font-heading font-semibold text-card-foreground mb-2">
+                    {product.title}
+                  </h3>
+                  {product.description && (
+                    <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                  )}
+                  <ul className="space-y-2 mb-6">
+                    {(product.features ?? []).map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex gap-3">
+                    {liveUrl ? (
+                      <Button variant="hero" size="sm" asChild>
+                        <a href={liveUrl} target="_blank" rel="noopener noreferrer">{t("products.demo")}</a>
+                      </Button>
+                    ) : (
+                      <Button variant="hero" size="sm">{t("products.demo")}</Button>
+                    )}
+                    <Button variant="ghost" size="sm" className="text-primary">{t("products.learn")}</Button>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
