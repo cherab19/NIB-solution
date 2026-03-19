@@ -173,7 +173,7 @@ const AdminProducts = () => {
 
             {/* Image Upload */}
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-foreground">Product Image</label>
+              <label className="text-xs font-medium text-foreground">Product Image</label>
               {imagePreview ? (
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
                   <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
