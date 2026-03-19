@@ -175,7 +175,7 @@ const AdminProducts = () => {
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-foreground">Product Image</label>
               {imagePreview ? (
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
+                <div className="relative w-full aspect-[3/1] rounded-lg overflow-hidden border border-border">
                   <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                   <button
                     type="button"
