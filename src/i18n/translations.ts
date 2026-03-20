@@ -41,6 +41,7 @@ export const translations: Record<string, Record<Language, string>> = {
   "products.desc": { en: "Ready-to-deploy solutions designed for organizations", am: "ለድርጅቶች የተዘጋጁ ዝግጁ መፍትሄዎች" },
   "products.demo": { en: "Request Demo", am: "ዲሞ ይጠይቁ" },
   "products.learn": { en: "Learn More", am: "ተጨማሪ ይወቁ" },
+  "products.visit": { en: "Visit Live Site", am: "ድረ-ገጹን ይጎብኙ" },
 
   // How it works
   "how.label": { en: "Process", am: "ሂደት" },
