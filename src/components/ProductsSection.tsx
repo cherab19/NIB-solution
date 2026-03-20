@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import productMembership from "@/assets/product-membership.png";
 import productSchool from "@/assets/product-school.png";
