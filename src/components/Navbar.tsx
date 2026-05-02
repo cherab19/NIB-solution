@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
-import pigeonLogo from "@/assets/pigeon-logo.png";
+import beeLogo from "@/assets/bee-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,8 +26,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#" className="flex items-center gap-2 font-heading text-2xl font-bold text-primary tracking-tight">
-          <img src={pigeonLogo} alt="PigeonLab logo" width={32} height={32} className="h-8 w-8 object-contain" />
-          PigeonLab
+          <img src={beeLogo} alt="NIB Solution logo" width={32} height={32} className="h-8 w-8 object-contain" />
+          NIB Solution
         </a>
 
         <div className="hidden md:flex items-center gap-8">

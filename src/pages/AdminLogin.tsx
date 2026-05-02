@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import pigeonLogo from "@/assets/pigeon-logo.png";
+import beeLogo from "@/assets/bee-logo.png";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -71,8 +71,8 @@ const AdminLogin = () => {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <a href="/" className="inline-flex items-center gap-3 font-heading text-3xl font-bold text-primary">
-            <img src={pigeonLogo} alt="PigeonLab logo" width={40} height={40} loading="lazy" className="h-10 w-10 object-contain" />
-            PigeonLab
+            <img src={beeLogo} alt="NIB Solution logo" width={40} height={40} loading="lazy" className="h-10 w-10 object-contain" />
+            NIB Solution
           </a>
           <p className="mt-2 text-muted-foreground">Admin Dashboard</p>
         </div>

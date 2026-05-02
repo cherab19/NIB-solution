@@ -1,6 +1,6 @@
 import { Facebook, Linkedin, Send } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import pigeonLogo from "@/assets/pigeon-logo.png";
+import beeLogo from "@/assets/bee-logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -11,8 +11,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-10">
           <div>
             <h3 className="flex items-center gap-2 font-heading text-xl font-bold text-surface-dark-foreground mb-4">
-              <img src={pigeonLogo} alt="PigeonLab logo" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />
-              PigeonLab
+              <img src={beeLogo} alt="NIB Solution logo" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />
+              NIB Solution
             </h3>
             <p className="text-surface-dark-foreground/60 text-sm">
               {t("footer.desc")}
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-surface-dark-foreground/10 text-center text-sm text-surface-dark-foreground/40">
-          © {new Date().getFullYear()} PigeonLab. {t("footer.rights")}
+          © {new Date().getFullYear()} NIB Solution. {t("footer.rights")}
         </div>
       </div>
     </footer>
