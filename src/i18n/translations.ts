@@ -15,12 +15,12 @@ export const translations: Record<string, Record<Language, string>> = {
   "hero.title2": { en: " That Helps Companies ", am: " ኩባንያዎች " },
   "hero.title.highlight2": { en: "Grow Digitally", am: "በዲጂታል እንዲያድጉ" },
   "hero.desc": {
-    en: "PigeonLab delivers cutting-edge web applications, management systems, and digital solutions for businesses ready to scale.",
-    am: "PigeonLab ዘመናዊ ድር መተግበሪያዎች፣ የአስተዳደር ስርዓቶች እና ዲጂታል መፍትሄዎችን ለሚያድጉ ንግዶች ያቀርባል።",
+    en: "NIB Solution delivers cutting-edge web applications, management systems, and digital solutions for businesses ready to scale.",
+    am: "NIB Solution ዘመናዊ ድር መተግበሪያዎች፣ የአስተዳደር ስርዓቶች እና ዲጂታል መፍትሄዎችን ለሚያድጉ ንግዶች ያቀርባል።",
   },
   "hero.cta1": { en: "Get Free Consultation", am: "ነፃ ምክር ያግኙ" },
   "hero.cta2": { en: "View Our Work", am: "ስራዎቻችንን ይመልከቱ" },
-  "hero.img.alt": { en: "PigeonLab Software Dashboard", am: "PigeonLab ሶፍትዌር ዳሽቦርድ" },
+  "hero.img.alt": { en: "NIB Solution Software Dashboard", am: "NIB Solution ሶፍትዌር ዳሽቦርድ" },
 
   // Trust
   "trust.title": { en: "Trusted Digital Solutions Provider", am: "ታማኝ የዲጂታል መፍትሄ አቅራቢ" },
@@ -37,7 +37,7 @@ export const translations: Record<string, Record<Language, string>> = {
 
   // Products
   "products.label": { en: "Our Products", am: "ምርቶቻችን" },
-  "products.title": { en: "Software Built by PigeonLab", am: "በ PigeonLab የተሰሩ ሶፍትዌሮች" },
+  "products.title": { en: "Software Built by NIB Solution", am: "በ NIB Solution የተሰሩ ሶፍትዌሮች" },
   "products.desc": { en: "Ready-to-deploy solutions designed for organizations", am: "ለድርጅቶች የተዘጋጁ ዝግጁ መፍትሄዎች" },
   "products.demo": { en: "Request Demo", am: "ዲሞ ይጠይቁ" },
   "products.learn": { en: "Learn More", am: "ተጨማሪ ይወቁ" },
@@ -64,8 +64,8 @@ export const translations: Record<string, Record<Language, string>> = {
   // CTA
   "cta.title": { en: "Ready to Digitize Your Business?", am: "ንግድዎን ለማዲጂታላይዝ ዝግጁ ነዎት?" },
   "cta.desc": {
-    en: "Book a free consultation with PigeonLab and transform your business with modern software solutions.",
-    am: "ከ PigeonLab ጋር ነፃ ምክር ያስይዙ እና ንግድዎን በዘመናዊ ሶፍትዌር ይለውጡ።",
+    en: "Book a free consultation with NIB Solution and transform your business with modern software solutions.",
+    am: "ከ NIB Solution ጋር ነፃ ምክር ያስይዙ እና ንግድዎን በዘመናዊ ሶፍትዌር ይለውጡ።",
   },
   "cta.button": { en: "Book Free Consultation", am: "ነፃ ምክር ያስይዙ" },
   "cta.form.title": { en: "Get in Touch", am: "ያግኙን" },
@@ -84,11 +84,11 @@ export const translations: Record<string, Record<Language, string>> = {
   "footer.rights": { en: "All rights reserved.", am: "መብቶች በሙሉ የተጠበቁ ናቸው።" },
 
   // Chat
-  "chat.title": { en: "PigeonLab Support", am: "PigeonLab ድጋፍ" },
+  "chat.title": { en: "NIB Solution Support", am: "NIB Solution ድጋፍ" },
   "chat.placeholder": { en: "Ask us anything...", am: "ማንኛውንም ይጠይቁ..." },
   "chat.welcome": {
-    en: "Hi! I'm the PigeonLab AI assistant. How can I help you today?",
-    am: "ሰላም! የ PigeonLab AI ረዳት ነኝ። ዛሬ እንዴት ልርዳዎት?",
+    en: "Hi! I'm the NIB Solution AI assistant. How can I help you today?",
+    am: "ሰላም! የ NIB Solution AI ረዳት ነኝ። ዛሬ እንዴት ልርዳዎት?",
   },
 };
 

@@ -8,7 +8,7 @@ import AdminServices from "@/components/admin/AdminServices";
 import AdminProducts from "@/components/admin/AdminProducts";
 import AdminMessages from "@/components/admin/AdminMessages";
 import AdminStats from "@/components/admin/AdminStats";
-import pigeonLogo from "@/assets/pigeon-logo.png";
+import beeLogo from "@/assets/bee-logo.png";
 
 const tabs = [
   { id: "messages", label: "Messages", icon: MessageSquare },
@@ -36,8 +36,8 @@ const Admin = () => {
       <aside className="w-64 border-r border-border bg-card flex flex-col">
         <div className="p-6 border-b border-border">
           <a href="/" className="flex items-center gap-2 font-heading text-xl font-bold text-primary">
-            <img src={pigeonLogo} alt="PigeonLab logo" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />
-            PigeonLab
+            <img src={beeLogo} alt="NIB Solution logo" width={28} height={28} loading="lazy" className="h-7 w-7 object-contain" />
+            NIB Solution
           </a>
           <p className="text-xs text-muted-foreground mt-1">Admin Panel</p>
         </div>
